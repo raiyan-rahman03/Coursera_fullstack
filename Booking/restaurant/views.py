@@ -23,6 +23,13 @@ def book(request):
      return render(request, 'book.html', context)
 
 # Add code for the bookings() view
+def bookings(request):
+    data = request.GET.get('date',datetime.today().date())
+    bookings = Booking.objects.all()
+    booking_json =serializers.serialize( json, bookings)
+    return(request,'bookings.html' , {'bookings':booking_json })
+
+## continue.....
 
 
 
