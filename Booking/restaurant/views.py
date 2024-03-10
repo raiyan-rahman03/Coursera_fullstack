@@ -1,12 +1,11 @@
 # from django.http import HttpResponse
 from django.shortcuts import render
-
 from .models import Menu
 from django.core import serializers
 from .models import Booking
 from datetime import datetime
 import json
-# from .forms import BookingForm
+from .forms import BookingForm
 
 def home(request):
     return render(request, 'index.html')
@@ -14,14 +13,14 @@ def home(request):
 def about(request):
     return render(request, 'about.html')
 
-# def book(request):
-#     form = BookingForm()
-#     if request.method == 'POST':
-#         form = BookingForm(request.POST)
-#         if form.is_valid():
-#             form.save()
-#     context = {'form':form}
-#     return render(request, 'book.html', context)
+def book(request):
+     form = BookingForm()
+     if request.method == 'POST':
+         form = BookingForm(request.POST)#eita holo post kora form jeita te data ase
+         if form.is_valid():
+             form.save()
+     context = {'form':form}
+     return render(request, 'book.html', context)
 
 # Add code for the bookings() view
 
