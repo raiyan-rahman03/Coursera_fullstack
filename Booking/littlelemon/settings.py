@@ -125,11 +125,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 # The settings for static files have been updated for the Graded assessment
-STATIC_URL = 'restaurant/static/'
-
+STATIC_URL = '/restaurant/static/'  # URL prefix for static files
 STATICFILES_DIRS = [
-    "restaurant/static",
+    "C:/Users/Admin/Desktop/Final/Coursera_fullstack/Booking/restaurant/static/",  # Path to your static files directory
 ]
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
