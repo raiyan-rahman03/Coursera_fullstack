@@ -1,19 +1,14 @@
 {% extends 'base.html' %}
-{% load static %}
-
 {% block content %}
 <section>
   <article>
     <h1>All Reservations</h1>
-    <!--Begin row-->
+    <!-- Display JSON data nicely -->
     <div class="row">
-      <!--Begin col-->
       <div class="column">
-        <pre id="bookings"></pre>
+        <!-- Display JSON data as a preformatted text -->
+        <pre id="json-data">{{ bookings|safe }}</pre>
       </div>
-      <!--End col-->
-
-      <!--Begin col-->
       <div class="column">
         <div class="videowrap">
           <iframe
@@ -22,29 +17,22 @@
             referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
       </div>
-      <!--End col-->
     </div>
-    <!--End row-->
-
-
-
-
   </article>
 </section>
 
 <!-- Add your code inside the script tags below  -->
 <script>
+  // Get the JSON data from the pre tag
+  const jsonData = document.getElementById('json-data').textContent;
 
-const bookings = JSON.parse('{{ bookings|safe }}')
+  // Parse the JSON data
+  const bookings = JSON.parse(jsonData);
 
-console.log (bookings)
-const pretty_json = JSON.stringify(bookings,null,2)
+  // Convert the JSON data to a nicely formatted string
+  const prettyJson = JSON.stringify(bookings, null, 2);
 
-
-
-
-
-
+  // Update the content of the pre tag with the nicely formatted JSON data
+  document.getElementById('json-data').textContent = prettyJson;
 </script>
 {% endblock %}
-

@@ -6,6 +6,7 @@ from .models import Booking
 from datetime import datetime
 import json
 from .forms import BookingForm
+from django.http import JsonResponse
 
 def home(request):
     return render(request, 'index.html')
@@ -26,8 +27,9 @@ def book(request):
 def bookings(request):
     data = request.GET.get('date',datetime.today().date())
     bookings = Booking.objects.all()
-    booking_json =serializers.serialize( json, bookings)
-    return(request,'bookings.html' , {'bookings':booking_json })
+    booking_json =serializers.serialize( 'json', bookings)
+
+    return render(request,'bookings.html' , {'bookings':booking_json })
 
 ## continue.....
 
